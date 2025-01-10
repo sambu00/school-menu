@@ -1,0 +1,63 @@
+<div id="show-week" class="container mt-3">
+	<div class="row">
+		<div class="col"><div class="container">
+				{% include "week_tabs.html" %}
+		</div>
+		</div>
+		<div class="col-1">
+			<form method="post">
+				<input type="hidden" name="action" value="remove_week">
+				<input type="hidden" name="kid_id" value="{{ k['KID_ID'] }}">
+				<button type="submit" class="btn btn-secondary">Remove All</button>
+			</form>
+		</div>
+	</div>
+
+</div>
+
+<div id="new-week" class="container my-5">
+	<form class="form" method="post">
+		<input type="hidden" class="form-control" name="action" value="add_week">
+		<input type="hidden" class="form-control" name="kid_id" value="{{ k['KID_ID'] }}">
+		<div class="form-group">
+			<div class="row">
+				<div class="col">
+					<div class="container">
+						<div class="row">
+							<div class="col-2"><div class="label label-default">Monday</div></div>
+							<div class="col"><input type="text" class="form-control" name="meal0"></div>
+						</div>			
+						<div class="row">
+							<div class="col-2"><div class="label label-default">Tuesday</div></div>
+							<div class="col"><input type="text" class="form-control" name="meal1"></div>
+						</div>			
+												<div class="row">
+							<div class="col-2"><div class="label label-default">Wednesday</div></div>
+							<div class="col"><input type="text" class="form-control" name="meal2"></div>
+						</div>			
+						<div class="row">
+							<div class="col-2"><div class="label label-default">Thursday</div></div>
+							<div class="col"><input type="text" class="form-control" name="meal3"></div>
+						</div>			
+												<div class="row">
+							<div class="col-2"><div class="label label-default">Friday</div></div>
+							<div class="col"><input type="text" class="form-control" name="meal4"></div>
+						</div>			
+						<div class="row">
+							<div class="col-2"><div class="label label-default">Saturday</div></div>
+							<div class="col"><input type="text" class="form-control" name="meal5"></div>
+						</div>			
+												<div class="row">
+							<div class="col-2"><div class="label label-default">Sunday</div></div>
+							<div class="col"><input type="text" class="form-control" name="meal6"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-1">
+					<button type="submit" class="btn btn-secondary">Add Week</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+

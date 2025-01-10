@@ -1,0 +1,87 @@
+<div class="container">
+	<div class="row">
+		<div class="col-2 mx-0 px-0 ">
+			<nav class="nav nav-tabs flex-column">
+				{% set ns = namespace(ctr=0) %}
+				{% set wns = namespace(week_ctr=0) %}
+				{% for m in meals %}
+					{% if m['KID_ID'] == k['KID_ID'] %}
+						
+						{% if ns.ctr == 0 %}
+							{% set wns.week_ctr = wns.week_ctr + 1 %}
+							{% if wns.week_ctr == 1 %}
+								<a class="nav-link active" id="w{{ k['KID_ID'] ~ wns.week_ctr }}-tab" data-bs-toggle="tab" href="#week{{ k['KID_ID'] ~ wns.week_ctr }}-panel" role="tab" aria-controls="w{{ k['KID_ID'] ~ wns.week_ctr }}" aria-selected="true">
+									<p class="align-middle"><strong>Week #{{ wns.week_ctr }}</strong></p>
+								</a>
+							{% else %}
+								<a class="nav-link" id="w{{ k['KID_ID'] ~ wns.week_ctr }}-tab" data-bs-toggle="tab" href="#week{{ k['KID_ID'] ~ wns.week_ctr }}-panel" role="tab" aria-controls="w{{ k['KID_ID'] ~ wns.week_ctr }}" aria-selected="false">
+									<p class="align-middle"><strong>Week #{{ wns.week_ctr }}</strong></p>
+								</a>
+							{% endif %}
+						{% endif %}
+						{% set ns.ctr = ns.ctr + 1 %}
+						{% if ns.ctr == 7 %}
+							{% set ns.ctr = 0 %}
+						{% endif %}
+					{% endif %}
+				{% endfor %}
+			</nav>
+		</div>
+		<div class="col mx-0 px-0">
+			<div class="tab-content" id="weeks_content">
+				{% set ns = namespace(ctr=0) %}
+				{% set wns = namespace(week_ctr=0) %}
+				{% for m in meals %}
+					{% if m['KID_ID'] == k['KID_ID'] %}
+						
+						{% if ns.ctr == 0 %}
+							{% set wns.week_ctr = wns.week_ctr + 1 %}
+							{% if wns.week_ctr == 1 %}
+								<div class="tab-pane p-4 fade show active" id="week{{ k['KID_ID'] ~ wns.week_ctr }}-panel" role="tabpanel" aria-labelledby="w{{ k['KID_ID'] ~ wns.week_ctr }}-tab">
+							{% else %}
+								<div class="tab-pane p-4 fade" id="week{{ k['KID_ID'] ~ wns.week_ctr }}-panel" role="tabpanel" aria-labelledby="w{{ k['KID_ID'] ~ wns.week_ctr }}-tab">
+							{% endif %}
+						{% endif %}
+						<div class="row"><div class="col">
+						<form method="post">
+							<input type="hidden" class="form-control" name="action" value="chg_meal">
+							<input type="hidden" class="form-control" name="kid_id" value="{{ k['KID_ID'] }}">
+							<input type="hidden" class="form-control" name="meal_id" value="{{ m['MEAL_ID'] }}">
+							<div class="form-group">
+								<div class="row mt-1">
+									<div class="col-2">
+										<div class="label label-default">
+										{% if ns.ctr == 0 %}Monday
+										{% elif ns.ctr == 1 %}Tuesday
+										{% elif ns.ctr == 2 %}Wednesday
+										{% elif ns.ctr == 3 %}Thursday
+										{% elif ns.ctr == 4 %}Friday
+										{% elif ns.ctr == 5 %}Saturday
+										{% elif ns.ctr == 6 %}Sunday{% endif %}
+										</div>
+									</div>
+									<div class="col"><input type="text" class="form-control" name="meal_courses" value="{{ m['MEAL_COURSES'] }}"></div>
+									<div class="col-3"><button type="submit" class="btn btn-secondary">Update Meal</button></div>
+								</div>				
+							</div>
+						</form></div><div class="col-3">
+						<form class="row" method="post">
+							<input type="hidden" class="form-control" name="action" value="set_starting_meal">
+							<input type="hidden" class="form-control" name="kid_id" value="{{ k['KID_ID'] }}">
+							<input type="hidden" class="form-control" name="meal_id" value="{{ m['MEAL_ID'] }}">
+							<div class="col mx-0"><input type="date" id="dateStandard" name="meal_date"></div>
+							<div class="col mx-0"><button type="submit" class="btn btn-sm btn-secondary">Set START</button></div>
+						</form>
+						</div></div>
+						{% set ns.ctr = ns.ctr + 1 %}
+						{% if ns.ctr == 7 %}
+							</div>
+							{% set ns.ctr = 0 %}
+						{% endif %}
+					{% endif %}
+				{% endfor %}			
+			</div>
+		</div>
+	</div>
+</div>
+

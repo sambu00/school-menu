@@ -1,0 +1,33 @@
+{% extends "layout_base.html" %}
+{% block title %}Kids{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+{% block content %}
+  <div id="kids_grid" class="container">
+	{% for k in kids %}
+		<div class="row my-1">
+			<div class="col-3">{{ k['KID_NAME'] }}</div>
+			<div class="col">
+				<form class="container" method="post">
+					<input type="hidden" name="action" value="remove_kid">
+					<input type="hidden" name="kid_id" value="{{ k['KID_ID'] }}">
+					<button type="submit" class="btn btn-secondary">REMOVE</button>
+				</form>
+			</div>
+		</div>
+	{% endfor %}
+  </div>
+  <div id="kid_form" class="container my-5">
+	<form class="row" method="post">
+		<input type="hidden" name="action" value="add_kid">
+		<div class="row">
+			<div class="col"><input type="text" class="form-control" name="kid_name"></div>
+			<div class="col"><button type="submit" class="btn btn-secondary">ADD KID</button></div>
+		</div>
+	</form>
+  </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "layout_base.html" %}
+{% block title %}Meals on Date{% endblock %}
+{% block page_det %}{{ page_detail }}{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+{% block content %}
+  <div class="container">
+	<div id="date_picker" class="container">
+		<form class="row" method="post">
+			<div class="col-auto"><input type="date" id="dateStandard" name="meal_date"></div>
+			<div class="col-auto"><button type="submit" class="btn btn-secondary">SUBMIT</button></div>
+		</form>
+	</div>
+	<div id="meals_show" class="container mt-3">
+		<p><strong>{{ meal_date }} - {{ day_of_week }}</strong></p>
+		{% set jinja_meals = meals %}
+		{% include "meal_list.html" %}
+	</div>
+  
+  </div>
+
+{% endblock %}

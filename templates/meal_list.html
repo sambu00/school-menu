@@ -1,0 +1,6 @@
+{% for m in jinja_meals %}
+	<div class="row">
+		<div class="col-2 border border-secondary">{{ m['name'] }}</div>
+		<div class="col border border-secondary">{{ m['meal'] }}</div>
+	</div>
+{% endfor %}

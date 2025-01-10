@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}
+    <!--link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"-->
+    <title>{% block title %}{% endblock %} - Menu rotation WebAPP</title>
+    {% endblock %}
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  </head>
+  <body>
+	
+	<div class="container">
+	
+	<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-bookmark" viewBox="0 0 16 16">
+			<path fill-rule="evenodd" d="M6 8V1h1v6.117L8.743 6.07a.5.5 0 0 1 .514 0L11 7.117V1h1v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8z"/>
+			<path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+			<path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+		</svg>
+		
+		<span class="fs-4 fw-bold ms-2">Menu rotation WebAPP {% block page_det%}{% endblock %}</span>
+      </a>
+
+      <ul class="nav nav-pills">
+		<li><a class="btn btn-secondary mx-1" role="button" href="{{ url_for('meals') }}">Meals</a></li>
+		<li><a class="btn btn-secondary mx-1" role="button" href="{{ url_for('meal_date') }}">Meal on date</a></li>
+		<li class="dropdown">
+		  <button class="btn btn-secondary dropdown-toggle mx-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">Administration</button>
+		  <ul class="dropdown-menu">
+		    <li><a class="dropdown-item" href="{{ url_for('kids') }}">Kids</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('weeks') }}">Weeks</a></li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+	
+	</div>
+	
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">
+      {% block footer %}      {% endblock %}
+    </div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  </body>
+</html>
